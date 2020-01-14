@@ -1,0 +1,592 @@
+/* GENERAL */
+body
+{
+    background-color: rgb(238, 238, 238);
+    background-image: none;
+}
+
+.form-button
+{
+  display: block;
+  background-color: #336699;
+  border: #336699;
+  border-radius: 5px;
+  padding: 7px 25px;
+  margin: 50px auto;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: whitesmoke;
+}
+
+.form-button:hover
+{
+  transform: scale(1.05);
+}
+
+ /* HEADER */
+
+header
+{
+    background-color: rgb(60, 103, 146);
+    border: 1px solid rgb(60, 103, 146);
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.private_nav
+{
+   display: flex;
+   justify-content: space-between;
+}
+
+.private_nav ul
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 5px 0 0;
+}
+
+.private_nav ul li
+{
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.logo-link
+{
+    display: inline-block;
+}
+
+.logo-link--div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo-link--div button
+{
+  background-color: rgb(60, 103, 146);
+  border: 1px solid rgb(60, 103, 146);
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.logo-link--div button a
+{
+  text-decoration: none;
+}
+
+.login-logo
+{
+   display: block;
+}
+
+#logo
+{
+    margin-bottom: -10px;
+}
+
+#logo:hover
+{
+    transform: scale(1.1);
+}
+
+/* SIGN-IN */
+
+.sign-div
+{
+  margin-top: 100px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-article form
+{
+  background-color: white;
+  border: 1px solid white;
+  width: 500px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.sign-article article
+{
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid white;
+  width: 500px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+/* GALLERY */
+
+.main-gallery--section
+{
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-article:first-of-type
+{
+    margin-top: 100px;
+}
+
+.post-article
+{
+    margin: 20px 250px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px auto;
+    width: 35%;
+}
+
+.post-article:last-of-type
+{
+    margin-bottom: 50px;
+}
+
+.post-article ul
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0;
+}
+
+.ul-div
+{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+.ul-div li
+{
+  margin-right: 2px;
+}
+
+.ul-div div
+{
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+
+.post-article ul a
+{
+  margin-right: 20px;
+}
+
+li
+{
+  list-style: none;
+}
+
+.writer-link
+{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: #000;
+}
+
+.writer-link:hover
+{
+    text-decoration: none;
+    color: #336699;
+}
+
+.writer-div
+{
+    /* display: flex;
+    flex-direction: row; */
+    margin: 7px 0 0 7px;
+}
+
+.writer-div p
+{
+    margin: 8px 0 8px 6px;
+    font-weight: 600;
+}
+
+.writer-div img
+{
+    border-radius: 50px;
+}
+
+.post-img--div
+{
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.commentary-space--form
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.commentary-space
+{
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 15px;
+  text-align: center;
+  width: 95%;
+  padding: 10px 30px;
+}
+
+.comment-div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.comment-writer--link
+{
+    text-decoration: none;
+    color: #000;
+    margin-right: 10px;
+}
+
+.comment-writer--link:hover
+{
+    text-decoration: none;
+    color: #336699;
+}
+
+.commentary-space--form button
+{
+    width: 100px;
+    height: 30px;
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 10px;
+    color: black;
+}
+
+.commentary-space--form button:hover
+{
+  transform: scale(1.05);
+  color: #336699;
+}
+
+.comment-index
+{
+}
+
+.user-logo--commentary
+{
+    border-radius: 50px; /* CA NEMARCHE PAS WTFFFFF */
+}
+/* NEW_PICTURE */
+
+.img_superposable_div{
+  margin-top: 50px;
+}
+/* .main-gallery--section
+{
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+/* .picture-div
+{
+  display: flex;
+  justify-content: space-around;
+  margin: 100px 0 0 0;
+}
+
+.picture-div nav
+{
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 100px 100px 20px 100px;
+  background-color: white;
+}
+
+.picture-div nav:first-child
+{
+  margin: 0px 20px 50px 30px;
+}
+
+.picture-div nav:nth-child(1n+1)
+{
+  margin: 0px 30px 50px 10px;
+}*/
+
+.picture-div nav ul li
+{
+  list-style-type: none;
+}
+
+.webcam-section
+{
+  display: flex;
+  flex-direction: column-reverse;
+  height: 650px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 0 30px;
+}
+
+.local-picture--form
+{
+    margin: 0 0 40px 0;
+    padding: 20px 100px;
+    border: 1px solid #336699;
+}
+
+.webcam-picture--form
+{
+    margin: 0 0 40px 0;
+    padding: 20px 100px;
+    border: 1px solid #336699;
+}
+
+/* SETTINGS */
+
+.settings-div
+{
+    display: flex;
+    /* justify-content: flex-start; */
+    flex-direction: row;
+}
+
+.settings-nav
+{
+    margin-top: 65px;
+    width: 15%;
+    height: 1000px;
+    background-color: white;
+}
+
+.edit-profile--section
+{
+    width: 85%;
+    padding: 100px;
+}
+
+.general-settings--section
+{
+    width: 85%;
+    padding: 100px;
+}
+
+.edit-profile--section form
+{
+    border-radius: 15px;
+    padding: 10px 40px;
+    background-color: white;
+}
+
+.general-settings--section form
+{
+    border-radius: 15px;
+    padding: 10px 40px;
+    background-color: white;
+}
+
+.button-edition--div
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-edition--div button
+{
+    width: 120px;
+}
+
+.disable-notif--checkbox-div
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.disable-notif--checkbox-div label
+{
+    margin-left: 10px;
+}
+
+.disable-notif--button-div
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.disable-notif--button-div button
+{
+    width: 120px;
+}
+
+.disable-notif--button-div button:hover
+{
+    transform: scale(1.05);
+}
+
+.button-edition--div button:hover
+{
+    transform: scale(1.05);
+}
+
+/*  EDIT PROFILE  */
+
+.avatar-logo--div
+{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.avatar-logo--div img
+{
+    border-radius: 100%;
+}
+
+.avatar-logo--div img:hover
+{
+    transform: scale(1.05);
+}
+
+/* FOOTER */
+footer
+{
+    background-color: rgb(60, 103, 146);
+    border: 1px solid rgb(60, 103, 146);
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: bold;
+    text-align: right;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p
+{
+    margin: 5px 10px 5px 0;
+    display: block;
+}
+
+@media screen and (max-width: 1600px)
+{
+    .profil-div
+    {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    @media screen and (max-width: 740px)
+    {
+        .profil-div
+        {
+            width: 95%;
+            margin: 5px auto;
+        }
+    }
+}
+/*
+nav ul
+{
+    margin-top: 20px;
+}
+
+nav ul li
+{
+    margin: auto 15px;
+} */
+
+/*
+.logo
+{
+    margin-top: -35px;
+}
+
+.logo:hover
+{
+    transform: scale(1.1);
+}
+
+.logo-div
+{
+    display: inline-block;
+}
+
+button
+{
+    float: right;
+    margin-top: 15px;
+    margin-right: 30px;
+    padding: 10px 20px;
+    background-image: linear-gradient(#4169E1, rgb(1, 119, 188));
+    border: black solid 1px;
+    opacity: 0.5;
+    font-family: 'Monoton', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: black;
+    border-radius: 10px;
+}
+
+button:hover
+{
+    transform: scale(1.1);
+}
+
+/* MAIN */
+
+/* .container
+{
+    margin:  50px auto 50px auto;
+    height: 100%;
+    border: 1px solid;
+    background-color: white;
+}
+
+.publication
+{
+    border: 2px solid;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.publi-x
+{
+    max-width: 100%;
+    position: absolue;
+}
+
+.visu
+{
+    width: 100%;
+    text-align: center;
+}
+li
+{
+    display: inline-block;
+} */

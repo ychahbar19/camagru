@@ -1,0 +1,268 @@
+header
+{
+    background-color: #336699;
+    border: 1px solid #336699;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.logo-link
+{
+    display: inline-block;
+}
+
+.logo-link--div
+{
+    text-align: center;
+    overflow: hidden;
+}
+
+.login-logo
+{
+   display: block;
+}
+
+#logo
+{
+    margin-bottom: -10px;
+}
+
+#logo:hover
+{
+    transform: scale(1.1);
+}
+
+ul
+{
+    display: flex;
+    align-content: flex-start;
+    padding-left: 5px;
+    margin: 0;
+}
+
+ul li
+{
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+nav
+{
+    float: right;
+    margin: 0 10px 0 0px;
+}
+
+nav ul
+{
+    margin-top: 20px;
+}
+
+nav ul li
+{
+    margin: auto 15px;
+}
+
+/* ca sarrete ici */
+
+button
+{
+    float: right;
+    background-color: inherit;
+    border: 1px solid #336699;
+    border-radius: 5px;
+    margin: 5px 20px auto 0;
+    padding: 8px 4px;
+    font-size: 15px;
+}
+
+button:hover
+{
+    background-color: inherit;
+    border: 1px solid inherit;
+    text-decoration: none;
+}
+
+#login-button--link
+{
+    color: whitesmoke;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+}
+
+#login-button--link:hover
+{
+    transform: scale(1.1);
+    font-weight: 700;
+}
+
+ul
+{
+    display: flex;
+    align-content: flex-start;
+    padding-left: 5px;
+    margin: 0;
+}
+
+ul li
+{
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.like:hover
+{
+    color: red;
+    transform: scale(1.1);
+}
+
+.comment:hover
+{
+    color: rgb(63, 105, 221);
+    transform: scale(1.1);
+}
+
+section
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 95%;
+}
+
+article
+{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+    width: 500px;
+    background-color: white;
+}
+
+form
+{
+    border: 1px solid rgb(238, 238, 238);
+    margin: 0 50px;
+    padding: 10px 30px 10px 30px;
+    text-align: left;
+}
+
+form p
+{
+    margin: 5px 0;
+    color: rgb(131, 128, 128);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.user-info
+{
+    text-align: left;
+    margin: 10px 0 0 10px;
+}
+
+.user-info *
+{
+    display: inline-block;
+}
+
+.user-info p
+{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.user-logo
+{
+    border-radius: 100%;
+}
+
+.user-logo:hover
+{
+    transform: scale(1.1);
+}
+
+.user-logo--commentary
+{
+    border-radius: 100%;
+    margin-right: 3px;
+}
+
+#publication-date
+{
+    font-size: 11px;
+    float: left;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.comment-logo
+{
+    color: #336699;
+    font-size: 30px;
+}
+
+.comment-logo:hover
+{
+    transform: scale(1.2);
+}
+
+footer
+{
+    background-color: #336699;
+    border: 1px solid #336699;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: bold;
+    text-align: right;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p
+{
+    margin: 5px 10px 5px 0;
+    display: block;
+}
+
+/* Private header */
+nav
+{
+    float: right;
+    margin: 0 10px 0 0px;
+}
+
+nav ul
+{
+    margin-top: 20px;
+}
+
+nav ul li
+{
+    margin: auto 15px;
+}
+
+@media screen and (max-width: 1100px)
+{
+   .logo-link--div
+    {
+        text-align: left;
+        margin-left: 20px;
+    }
+    @media screen and (max-width: 740px)
+    {
+        article
+        {
+            width: 95%;
+            margin: 5px auto;
+        }
+    }
+}
