@@ -217,4 +217,58 @@ function like_controller($header)
 
   return ($is_liked);
 }
+
+function apply_calc_to_img()
+{
+  if ($_SERVER['REQUEST_METHOD'] === 'POST')
+  {
+      $image = $_POST['img'];
+      $filter_img = $_POST['calc'];
+      $login = $_SESSION['name'];
+      // print_r($_POST);
+
+      $folder = './public/images/temp';
+      if (!is_dir($folder))
+        mkdir($folder);
+      $new_file = time().'.png';
+      $file_path = $folder.'/'.$new_file;
+
+      $array = explode(',', $image);
+      $data_64 = str_replace(' ', '+', $array[1]);
+      $data = base64_decode($data_64);
+      file_put_contents($file_path, $data);
+
+      $calc0 = imagecreatefrompng($file_path);
+      $calc1 = imagecreatefrompng($filter_img);
+
+      $calc1_size = getimagesize($filter_img);
+      $dst_x = 50;
+      $dst_y = 10;
+      $src_x = 0;
+      $src_y = 0;
+      $src_w = $calc1_size[0];
+      $src_h = $calc1_size[1];
+      $dst_w = 150;
+      $dst_h = 150;
+      imagecopyresampled($calc0, $calc1, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+      imagepng($calc0, $file_path);
+
+      echo '<p id="new_file">'.$new_file.'</p>';
+    }
+}
+function post_new_img()
+{
+  $galleryManager = new Publication();
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST')
+  {
+    $image_path = $_POST['image'];
+    $img = basename($image_path);
+    $new_file = "./public/images/posts/".$img;
+
+    rename($image_path, $new_file);
+    $galleryManager->postImg($new_file);
+    array_map('unlink', glob("./public/images/temp/*.png"));
+  }
+}
 ?>

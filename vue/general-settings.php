@@ -1,4 +1,4 @@
-    <section class="col-xs-12 col-md-8">
+    <section class="col-lg-12 col-md-12 centered">
         <div class="checkbox">
             <form action="" method="post">
                 <div class="disable-notif--checkbox-div">

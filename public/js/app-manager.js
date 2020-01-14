@@ -109,6 +109,7 @@ if (webcam_open_btn)
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
+    // console.log(photo);
     type_img = "webcam";
   });
 
@@ -160,20 +161,21 @@ if (webcam_open_btn)
 
       if (img_path !== "")
       {
-        console.log(img_path);
         var xhr = new XMLHttpRequest();
         var data = "img=" + img_path + "&calc=" + calc_checked_path + "&type=" + type_img;
 
-        xhr.open('POST', 'http://localhost:8080/W.I.P/camagru-wip/index.php?action=apply_calc_to_img', true)
+        xhr.open('POST', 'http://localhost:8888/W.I.P/camagru-wip/index.php?action=apply_calc_to_img', true)
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200)
           {
-            alert("ici");
-            // new_img = document.cookie.replace(/(?:(?:^|.*;\s*)image\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-            // photo.setAttribute("src", "public/img/temp/" + new_img);
+            var responseText = xhr.responseText;
+            var parser=new DOMParser();
+            var xmlDoc=parser.parseFromString(responseText,"text/html");
+            var tds = xmlDoc.querySelector("#new_file");
+            var new_img = tds.innerHTML;
+            photo.setAttribute("src", "public/images/temp/" + new_img);
           }
         }
-
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.send(data);
       }
@@ -184,15 +186,16 @@ if (webcam_open_btn)
 
   send_picture_btn.addEventListener("click", function () {
     if (input_file.value === "" && photo.getAttribute("src") === "")
-    error_msg.classList.remove("d-none");
-    if (photo.getAttribute("src").indexOf("public/img/temp/") != -1)
+      error_msg.classList.remove("d-none");
+    if (photo.getAttribute("src").indexOf("public/images/temp/") != -1)
     {
       var xhr = new XMLHttpRequest();
       var data = "image=" + photo.getAttribute("src");
-      xhr.open('POST', 'http://localhost:8080/W.I.P/camagru-wip/index.php?action=post_new_img', true)
+      xhr.open('POST', 'http://localhost:8888/W.I.P/camagru-wip/index.php?action=post_new_img', true)
       xhr.onreadystatechange = function () {
+
         if (xhr.readyState === 4 && xhr.status === 200)
-        window.location.href = "http://localhost:8080/W.I.P/camagru-wip/index.php?action=user_profil";
+        window.location.href = "http://localhost:8888/W.I.P/camagru-wip/index.php?action=profile";
       }
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhr.send(data);

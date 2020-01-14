@@ -11,7 +11,7 @@ require("./controllers/mail.php");?>
         <!-- <link href="./public/css/gallery.css" rel="stylesheet"> -->
         <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./public/css/main_style.css?version=51">
+        <link rel="stylesheet" href="./public/css/main_style.css?v=2">
         <?php require("./vue/title.php"); ?>
         <link rel="shortcut icon" href="./public/images/camagru-logo.png">
     </head>
@@ -77,10 +77,16 @@ require("./controllers/mail.php");?>
                 else
                     header("Location: ./index.php?action=sign-in");
                 break;
-                case 'add-comment':
-                  comment_validator($header);
-                  // print_r($_SESSION);
-                  break;
+              case 'add-comment':
+                comment_validator($header);
+                break;
+              case 'apply_calc_to_img':
+                apply_calc_to_img();
+                break;
+              case 'post_new_img':
+                post_new_img();
+                break;
+
 
             }
           }

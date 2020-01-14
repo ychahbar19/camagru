@@ -426,55 +426,62 @@ class Publication extends Manager
   {
     parent::__construct();
   }
-  public function create_posts()
+  // public function create_posts()
+  // {
+  //     $error = NULL;
+  //     if (!empty($_SESSION['id']))
+  //     {
+  //        $id = $_SESSION['id'];
+  //        if (isset($_FILES['local-picture']) && !empty($_FILES['local-picture']['name']))
+  //        {
+  //            $Post = $this->bdd->prepare("INSERT INTO posts (id_user, creation_date) VALUES (?,DATE(NOW()))");
+  //            $Post->execute([$id]);
+  //            $Post->closeCursor();
+  //            $reqPost = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
+  //            $reqPost->execute(array($id));
+  //            $actualPost = $reqPost->fetch();
+  //            $reqPost->closeCursor();
+  //            $maxSize = 2097152;
+  //            $valid_extension = array('jpg', 'jpeg', 'gif', 'png');
+  //            if ($_FILES['local-picture']['size'] <= $maxSize)
+  //            {
+  //                $uploadedExtension = strtolower(substr(strrchr($_FILES['local-picture']['name'], '.'), 1));
+  //                if (in_array($uploadedExtension, $valid_extension))
+  //                {
+  //                    $path = "./public/images/posts/".$id."-".$actualPost[0].".".$uploadedExtension;
+  //                    $result = move_uploaded_file($_FILES['local-picture']['tmp_name'], $path);
+  //                    if ($result)
+  //                    {
+  //                        $updatePost = $this->bdd->prepare("UPDATE posts SET image = ? ORDER BY id_post DESC LIMIT 1");
+  //                        $updatePost->execute([$path]);
+  //                        $updatePost->closeCursor();
+  //                    }
+  //                    else
+  //                        $error = "a mistake has occured ...";
+  //                }
+  //                else
+  //                    $error = "your picture must be formated as jpg, jpeg, gif or png !";
+  //            }
+  //            else
+  //                $error = "this picture must be less than 2 Mo !";
+  //        }
+  //        else
+  //           $error = "please select a file !";
+  //        if (isset($error))
+  //        {
+  //            $removePost = $this->bdd->prepare("DELETE * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
+  //            $removePost->execute(array([$id]));
+  //            $removePost->closeCursor();
+  //        }
+  //        return $error;
+  //     }
+  // }
+
+  public function postImg($img)
   {
-      $error = NULL;
-      if (!empty($_SESSION['id']))
-      {
-         $id = $_SESSION['id'];
-         if (isset($_FILES['local-picture']) && !empty($_FILES['local-picture']['name']))
-         {
-             $Post = $this->bdd->prepare("INSERT INTO posts (id_user, creation_date) VALUES (?,DATE(NOW()))");
-             $Post->execute([$id]);
-             $Post->closeCursor();
-             $reqPost = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
-             $reqPost->execute(array($id));
-             $actualPost = $reqPost->fetch();
-             $reqPost->closeCursor();
-             $maxSize = 2097152;
-             $valid_extension = array('jpg', 'jpeg', 'gif', 'png');
-             if ($_FILES['local-picture']['size'] <= $maxSize)
-             {
-                 $uploadedExtension = strtolower(substr(strrchr($_FILES['local-picture']['name'], '.'), 1));
-                 if (in_array($uploadedExtension, $valid_extension))
-                 {
-                     $path = "./public/images/posts/".$id."-".$actualPost[0].".".$uploadedExtension;
-                     $result = move_uploaded_file($_FILES['local-picture']['tmp_name'], $path);
-                     if ($result)
-                     {
-                         $updatePost = $this->bdd->prepare("UPDATE posts SET image = ? ORDER BY id_post DESC LIMIT 1");
-                         $updatePost->execute([$path]);
-                         $updatePost->closeCursor();
-                     }
-                     else
-                         $error = "a mistake has occured ...";
-                 }
-                 else
-                     $error = "your picture must be formated as jpg, jpeg, gif or png !";
-             }
-             else
-                 $error = "this picture must be less than 2 Mo !";
-         }
-         else
-            $error = "please select a file !";
-         if (isset($error))
-         {
-             $removePost = $this->bdd->prepare("DELETE * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
-             $removePost->execute(array([$id]));
-             $removePost->closeCursor();
-         }
-         return $error;
-      }
+    echo "$img";
+    $req = $this->bdd->prepare("INSERT INTO posts (id_user, image, creation_date) VALUES (?,?, NOW())");
+    $req->execute(array($_SESSION['id'], $img));
   }
 
   public function delete_post($post)
@@ -523,7 +530,7 @@ class Publication extends Manager
 
     $premiereEntree = ($pageActuelle - 1) * $publicationParPage;
 
-    $retour_publications = $this->bdd->prepare('SELECT * FROM posts WHERE id_user = ? ORDER BY id_post ASC LIMIT '.$premiereEntree.', '.$publicationParPage.'');
+    $retour_publications = $this->bdd->prepare('SELECT * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT '.$premiereEntree.', '.$publicationParPage.'');
     $retour_publications->execute(array($_SESSION['id']));
 
     while ($donnees_publications = $retour_publications->fetch(PDO::FETCH_ASSOC))
@@ -572,7 +579,7 @@ class Publication extends Manager
 
     $premiereEntree = ($pageActuelle - 1) * $publicationParPage;
 
-    $retour_publications = $this->bdd->prepare('SELECT * FROM posts ORDER BY id_post ASC LIMIT '.$premiereEntree.', '.$publicationParPage.'');
+    $retour_publications = $this->bdd->prepare('SELECT * FROM posts ORDER BY id_post DESC LIMIT '.$premiereEntree.', '.$publicationParPage.'');
     $retour_publications->execute();
 
     while ($donnees_publications = $retour_publications->fetch(PDO::FETCH_ASSOC))

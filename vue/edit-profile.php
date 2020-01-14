@@ -1,6 +1,6 @@
-    <section class="col-xs-12 col-md-8">
+    <section class="col-lg-12 col-md-12 centered">
             <form method="post" enctype="multipart/form-data">
-                <div class="avatar-logo--div"><img  src="<?php echo $_SESSION['avatar'];?>" alt width="150" height="140"></div>
+                <div class="avatar-logo--div"><img  src="<?php echo $_SESSION['avatar'];?>" alt width="100" height="90"></div>
                 <br><br>
                 <div>
                     <label>veuillez choisir une photo de profil :</label>
