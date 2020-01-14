@@ -47,11 +47,11 @@ class User extends Manager
     {
         $notification = "";
         $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
-        $passwordconnect = $_POST['passwordconnect'];
+        $passwordconnect = htmlspecialchars($_POST['passwordconnect']);
         if (!empty($pseudoconnect) AND !empty($passwordconnect))
         {
             $requser = $this->bdd->prepare("SELECT * FROM users WHERE pseudo = ? AND password = ?");
-            $requser->execute(array($pseudoconnect, $passwordconnect));
+            $requser->execute(array($pseudoconnect, hash('whirlpool', $passwordconnect)));
             $userexist = $requser->rowCount();
             if ($userexist == 1)
             {
@@ -121,8 +121,8 @@ class User extends Manager
     {
       if (!empty($_POST['newpassword']) && !empty($_POST['newpassword_confirm']))
       {
-        $newpassword = $_POST['newpassword'];
-        $newpassword_confirm = $_POST['newpassword_confirm']; // a crypter !!
+        $newpassword = htmlspecialchars($_POST['newpassword']);
+        $newpassword_confirm = htmlspecialchars($_POST['newpassword_confirm']);
         $password_lenght = strlen($newpassword);
         $passwordconfirm_lenght = strlen($newpassword_confirm);
         if (($newpassword == $newpassword_confirm) && ($password_lenght == $passwordconfirm_lenght))
@@ -139,7 +139,7 @@ class User extends Manager
             if (!$user['user_status'] != 0)
               if ($user['confirm_key'] === $key)
               {
-                $password = $newpassword;
+                $password = hash('whirlpool', $newpassword);
                 $user_status = 1;
                 $reqnewpasswd = $this->bdd->prepare("UPDATE users SET password = ?, confirm_key = ?, user_status = ? WHERE id_user = ?");
                 $reqnewpasswd->execute(array($password, $key, $user_status, $id_user));
@@ -165,8 +165,8 @@ class User extends Manager
        $firstname = htmlspecialchars($_POST['firstname']);
        $pseudo = htmlspecialchars($_POST['pseudo']);
        $email = htmlspecialchars($_POST['email']);
-       $password = $_POST['password'];
-       $password2 = $_POST['password2'];
+       $password = htmlspecialchars($_POST['password']);
+       $password2 = htmlspecialchars($_POST['password2']);
        if (!empty($_POST['name']) AND !empty($_POST['firstname']) AND !empty($_POST['pseudo']) AND !empty($_POST['email']) AND !empty($_POST['password']) AND !empty($_POST['password2']))
        {
            $pseudolenght = strlen($pseudo);
@@ -208,7 +208,7 @@ class User extends Manager
                               mail($email, 'account confirmation', $message, $header);
                                $avatar_path = './public/images/avatars/avatar-de-base.png';
                                $insert_member = $this->bdd->prepare("INSERT INTO users(name, firstname, pseudo, mail, password, avatar, confirm_key) VALUES(?, ?, ?, ?, ?, ?, ?)");
-                               $insert_member->execute(array($name, $firstname, $pseudo, $email, $password, $avatar_path, $key));
+                               $insert_member->execute(array($name, $firstname, $pseudo, $email, hash('whirlpool', $password), $avatar_path, $key));
                                $insert_member->closeCursor();
                                $message = "your account has been created !";
                                $user = $pseudo;

@@ -1,4 +1,4 @@
-<section class="d-flex justify-content-center align-items-start">
+<section class="d-flex justify-content-center align-items-start mt-3">
   <form class="d-flex flex-column justify-content-between" action="" method="post" enctype="multipart/form-data">
     <div class="">
       <div class="img_superposable_div">
