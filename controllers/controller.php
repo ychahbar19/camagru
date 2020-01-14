@@ -79,7 +79,7 @@ function comment_validator($header)
     $postData = $Post->getPostInfo($id_post);
     $Post->send_comment($id_post, $message, $id_sender);
     $Post->create_notification($postData, $header);
-    header("Location: http://localhost:8888/W.I.P/camagru-wip/index.php");
+    header("Location: http://localhost:8888/camagru/index.php");
 
 }
 

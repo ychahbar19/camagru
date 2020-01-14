@@ -101,7 +101,7 @@ class User extends Manager
           <html>
               <body>
                   <div align="center">
-                      <a href="http://localhost:8888/W.I.P/camagru-wip/index.php?action=sign-in&id_user='.$id_user.'&key='.$key.'">choose a new password</a>
+                      <a href="http://localhost:8888/camagru/index.php?action=sign-in&id_user='.$id_user.'&key='.$key.'">choose a new password</a>
                   </div>
               </body>
           </html>
@@ -145,10 +145,10 @@ class User extends Manager
                 $reqnewpasswd->execute(array($password, $key, $user_status, $id_user));
                 $reqnewpasswd->closeCursor();
               }
-            header('Location: http://localhost:8888/W.I.P/camagru-wip/index.php?action=sign-in');
+            header('Location: http://localhost:8888/camagru/index.php?action=sign-in');
           }
           else
-            header('Location: http://localhost:8888/W.I.P/camagru-wip/index.php?action=sign-in');
+            header('Location: http://localhost:8888/camagru/index.php?action=sign-in');
         }
         else
           $message = "password aren't the same !";
@@ -200,7 +200,7 @@ class User extends Manager
                               <html>
                                   <body>
                                       <div align="center">
-                                          <a href="http://localhost/W.I.P/index.php?action=user_confirm&pseudo='.$pseudo.'&key='.$key.'">confirm your inscription !</a>
+                                          <a href="http://localhost/camagru/index.php?action=user_confirm&pseudo='.$pseudo.'&key='.$key.'">confirm your inscription !</a>
                                       </div>
                                   </body>
                               </html>

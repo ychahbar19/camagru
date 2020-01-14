@@ -4,7 +4,7 @@ var xhr = new XMLHttpRequest();
 
 function get_like(id_post)
 {
-  xhr.open('GET', 'http://localhost:8888/W.I.P/camagru-wip/index.php?sub-action=like&id_post=' + id_post, true);
+  xhr.open('GET', 'http://localhost:8888/camagru/index.php?sub-action=like&id_post=' + id_post, true);
   xhr.setRequestHeader('X-Requested-Width', 'xmlhttprequest');
   xhr.onreadystatechange = function(){
     if(xhr.readyState === 4 && xhr.status === 200)
@@ -15,7 +15,7 @@ function get_like(id_post)
 
 function get_dislike(id_post)
 {
-  xhr.open('GET', 'http://localhost:8888/W.I.P/camagru-wip/index.php?sub-action=dislike&id_post=' + id_post, true);
+  xhr.open('GET', 'http://localhost:8888/camagru/index.php?sub-action=dislike&id_post=' + id_post, true);
   xhr.setRequestHeader('X-Requested-Width', 'xmlhttprequest');
   xhr.send();
 }
@@ -164,7 +164,7 @@ if (webcam_open_btn)
         var xhr = new XMLHttpRequest();
         var data = "img=" + img_path + "&calc=" + calc_checked_path + "&type=" + type_img;
 
-        xhr.open('POST', 'http://localhost:8888/W.I.P/camagru-wip/index.php?action=apply_calc_to_img', true)
+        xhr.open('POST', 'http://localhost:8888/camagru/index.php?action=apply_calc_to_img', true)
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200)
           {
@@ -191,11 +191,11 @@ if (webcam_open_btn)
     {
       var xhr = new XMLHttpRequest();
       var data = "image=" + photo.getAttribute("src");
-      xhr.open('POST', 'http://localhost:8888/W.I.P/camagru-wip/index.php?action=post_new_img', true)
+      xhr.open('POST', 'http://localhost:8888/camagru/index.php?action=post_new_img', true)
       xhr.onreadystatechange = function () {
 
         if (xhr.readyState === 4 && xhr.status === 200)
-        window.location.href = "http://localhost:8888/W.I.P/camagru-wip/index.php?action=profile";
+        window.location.href = "http://localhost:8888/camagru/index.php?action=profile";
       }
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhr.send(data);
