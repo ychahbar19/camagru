@@ -79,7 +79,7 @@ function comment_validator($header)
     $postData = $Post->getPostInfo($id_post);
     $Post->send_comment($id_post, $message, $id_sender);
     $Post->create_notification($postData, $header);
-    header("Location: http://localhost:8888/camagru/index.php");
+    header("Location: http://localhost:8080/camagru/index.php");
 
 }
 
@@ -137,13 +137,6 @@ function user_posts_view()
     $counter = count($post_array);
     require('./vue/gallery.php');
     $user_post->user_post_recover($header);
-    // for ($i=0; $i < $counter; $i++)
-    // {
-    //     $writer_info = $_SESSION;
-    //     require('vue/post_1.php');
-    //     $user_post->comment_recover($post_array[$i]);
-    //     require('vue/post_2.php');
-    // }
     echo "</section>";
 }
 
@@ -183,7 +176,6 @@ function general_settings_controller()
   if (isset($_POST["notification-button"]))
     $user->notification_handler();
   require('./vue/general-settings.php');
-  // return ($bool);
 }
 
 function like_controller($header)
@@ -225,7 +217,6 @@ function apply_calc_to_img()
       $image = $_POST['img'];
       $filter_img = $_POST['calc'];
       $login = $_SESSION['name'];
-      // print_r($_POST);
 
       $folder = './public/images/temp';
       if (!is_dir($folder))
@@ -270,5 +261,11 @@ function post_new_img()
     $galleryManager->postImg($new_file);
     array_map('unlink', glob("./public/images/temp/*.png"));
   }
+}
+function get_post()
+{
+	$galleryManager = new Publication();
+
+	$galleryManager->get_user_posts();
 }
 ?>

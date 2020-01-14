@@ -301,38 +301,16 @@ li
 .img_superposable_div{
   margin-top: 50px;
 }
-/* .main-gallery--section
-{
-    background-color: rgb(238, 238, 238);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
 
-/* .picture-div
-{
-  display: flex;
-  justify-content: space-around;
-  margin: 100px 0 0 0;
+.gallery-view--section{
+	background-color: white;
+	border-radius: 15px;
+	width: 60vh;
+	height: 40vw;
+	overflow: scroll;
+	text-align: center;
+	margin: 0 auto;
 }
-
-.picture-div nav
-{
-  border: 1px solid white;
-  border-radius: 15px;
-  padding: 100px 100px 20px 100px;
-  background-color: white;
-}
-
-.picture-div nav:first-child
-{
-  margin: 0px 20px 50px 30px;
-}
-
-.picture-div nav:nth-child(1n+1)
-{
-  margin: 0px 30px 50px 10px;
-}*/
 
 .picture-div nav ul li
 {
@@ -491,32 +469,51 @@ footer p
     display: block;
 }
 
-@media screen and (max-width: 1600px)
+@media screen and (max-width: 2600px) and (min-width: 1801px)
 {
-    .profil-div
-    {
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-    @media screen and (max-width: 1000px)
-  {
-    .post-article{
-      width: 70%;
-      margin: 5px auto;
-    }
-    @media screen and (max-width: 740px)
-    {
-        .profil-div
-        {
-            width: 95%;
-            margin: 5px auto;
-        }
-        .post-article{
-          width: 95%;
-          margin: 5px auto;
-        }
-    }
-  }
+	.post-article{
+	  width: 25%;
+	  margin: 5px auto;
+	}
+	@media screen and (max-width: 1800px) and (min-width: 1601px)
+	{
+		.post-article{
+		  width: 30%;
+		  margin: 5px auto;
+		}
+
+		@media screen and (max-width: 1600px) and (min-width: 1001px)
+		{
+		    .profil-div
+		    {
+		      flex-wrap: wrap;
+		      justify-content: space-around;
+		    }
+			.post-article{
+		      width: 40%;
+		      margin: 5px auto;
+		    }
+		    @media screen and (max-width: 1000px) and (min-width: 741px)
+		  {
+		    .post-article{
+		      width: 70%;
+		      margin: 5px auto;
+		    }
+		    @media screen and (max-width: 740px)
+		    {
+		        .profil-div
+		        {
+		            width: 95%;
+		            margin: 5px auto;
+		        }
+		        .post-article{
+		          width: 95%;
+		          margin: 5px auto;
+		        }
+		    }
+		  }
+		}
+	}
 }
 /*
 nav ul

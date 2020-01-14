@@ -85,6 +85,9 @@ require("./controllers/mail.php");?>
               case 'post_new_img':
                 post_new_img();
                 break;
+			case 'get_post':
+				get_post();
+				break;
             }
           }
           ?>

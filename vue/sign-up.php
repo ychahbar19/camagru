@@ -1,7 +1,6 @@
 <section>
     <article>
-        <form action="" method="post">
-            <div><img  src="../public/images/camagru-logo.png" alt width="110" height="110"></div>
+        <form action="" method="post" style="margin-top: 100px">
             <div class="form-div--signup">
                 <input type="text" class="form-control" placeholder="name" name="name" value="<?php if(isset($name)){echo $name;}?>">
             </div>

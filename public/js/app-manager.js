@@ -2,20 +2,36 @@ var post_array = document.querySelectorAll(".post-article");
 var likeState = null;
 var xhr = new XMLHttpRequest();
 
+var post_view = document.querySelector(".gallery-view--section");
+
+if (post_view)
+{
+	xhr.open('GET', 'http://localhost:8080/camagru/index.php?action=get_post', true);
+	xhr.setRequestHeader('X-Requested-Width', 'xmlhttprequest');
+	xhr.onreadystatechange = function(){
+	  if(xhr.readyState === 4 && xhr.status === 200){
+		  var responseText = xhr.responseText;
+		  var parser=new DOMParser();
+		  var xmlDoc=parser.parseFromString(responseText,"text/html");
+		  var tds = xmlDoc.querySelectorAll(".posts");
+		  for (var i = 0; i < tds.length; i++) {
+			  post_view.appendChild(tds[i]);
+		  }
+		};
+	}
+	xhr.send();
+}
+
 function get_like(id_post)
 {
-  xhr.open('GET', 'http://localhost:8888/camagru/index.php?sub-action=like&id_post=' + id_post, true);
+  xhr.open('GET', 'http://localhost:8080/camagru/index.php?sub-action=like&id_post=' + id_post, true);
   xhr.setRequestHeader('X-Requested-Width', 'xmlhttprequest');
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState === 4 && xhr.status === 200)
-      console.log(xhr.responseText);
-  };
   xhr.send();
 }
 
 function get_dislike(id_post)
 {
-  xhr.open('GET', 'http://localhost:8888/camagru/index.php?sub-action=dislike&id_post=' + id_post, true);
+  xhr.open('GET', 'http://localhost:8080/camagru/index.php?sub-action=dislike&id_post=' + id_post, true);
   xhr.setRequestHeader('X-Requested-Width', 'xmlhttprequest');
   xhr.send();
 }
@@ -164,7 +180,7 @@ if (webcam_open_btn)
         var xhr = new XMLHttpRequest();
         var data = "img=" + img_path + "&calc=" + calc_checked_path + "&type=" + type_img;
 
-        xhr.open('POST', 'http://localhost:8888/camagru/index.php?action=apply_calc_to_img', true)
+        xhr.open('POST', 'http://localhost:8080/camagru/index.php?action=apply_calc_to_img', true)
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200)
           {
@@ -191,11 +207,11 @@ if (webcam_open_btn)
     {
       var xhr = new XMLHttpRequest();
       var data = "image=" + photo.getAttribute("src");
-      xhr.open('POST', 'http://localhost:8888/camagru/index.php?action=post_new_img', true)
+      xhr.open('POST', 'http://localhost:8080/camagru/index.php?action=post_new_img', true)
       xhr.onreadystatechange = function () {
 
         if (xhr.readyState === 4 && xhr.status === 200)
-        window.location.href = "http://localhost:8888/camagru/index.php?action=profile";
+        window.location.href = "http://localhost:8080/camagru/index.php?action=profile";
       }
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhr.send(data);

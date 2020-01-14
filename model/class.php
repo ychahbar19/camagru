@@ -10,7 +10,7 @@ class Manager
   {
     try
     {
-        $this->bdd = new PDO('mysql:host=localhost;dbname=db_camagru;charset=utf8', 'root', 'root');
+        $this->bdd = new PDO('mysql:host=localhost;dbname=db_camagru;charset=utf8', 'root', 'qwerty1994');
     }
     catch(Exception $e)
     {
@@ -101,7 +101,7 @@ class User extends Manager
           <html>
               <body>
                   <div align="center">
-                      <a href="http://localhost:8888/camagru/index.php?action=sign-in&id_user='.$id_user.'&key='.$key.'">choose a new password</a>
+                      <a href="http://localhost:8080/camagru/index.php?action=sign-in&id_user='.$id_user.'&key='.$key.'">choose a new password</a>
                   </div>
               </body>
           </html>
@@ -145,10 +145,10 @@ class User extends Manager
                 $reqnewpasswd->execute(array($password, $key, $user_status, $id_user));
                 $reqnewpasswd->closeCursor();
               }
-            header('Location: http://localhost:8888/camagru/index.php?action=sign-in');
+            header('Location: http://localhost:8080/camagru/index.php?action=sign-in');
           }
           else
-            header('Location: http://localhost:8888/camagru/index.php?action=sign-in');
+            header('Location: http://localhost:8080/camagru/index.php?action=sign-in');
         }
         else
           $message = "password aren't the same !";
@@ -200,7 +200,7 @@ class User extends Manager
                               <html>
                                   <body>
                                       <div align="center">
-                                          <a href="http://localhost/camagru/index.php?action=user_confirm&pseudo='.$pseudo.'&key='.$key.'">confirm your inscription !</a>
+                                          <a href="http://localhost:8080/camagru/index.php?action=user_confirm&pseudo='.$pseudo.'&key='.$key.'">confirm your inscription !</a>
                                       </div>
                                   </body>
                               </html>
@@ -317,7 +317,6 @@ class User extends Manager
            $insertFirstname->execute(array($newFirstname, $_SESSION['id']));
            $_SESSION['firstname'] = $newFirstname;
            $insertFirstname->closeCursor();
-           // header("Location: private-gallery.php?id=".$_SESSION['id']);
        }
        if (isset($_POST['newName']) AND !empty($_POST['newName']) AND $_POST['newName'] != $userinfo['name'])
        {
@@ -326,7 +325,6 @@ class User extends Manager
            $insertName->execute(array($newName, $_SESSION['id']));
            $_SESSION['name'] = $newName;
            $insertName->closeCursor();
-           // header("Location: private-gallery.php?id=".$_SESSION['id']);
        }
        if (isset($_POST['newPseudo']) AND !empty($_POST['newPseudo']) AND $_POST['newPseudo'] != $userinfo['pseudo'])
        {
@@ -342,7 +340,6 @@ class User extends Manager
                $insertPseudo->execute(array($newPseudo, $_SESSION['id']));
                $_SESSION['pseudo'] = $newPseudo;
                $insertPseudo->closeCursor();
-               // header("Location: private-gallery.php?id=".$_SESSION['id']);
            }
        }
        if (isset($_POST['newEmail']) AND !empty($_POST['newEmail']) AND $_POST['newEmail'] != $userinfo['mail'])
@@ -361,7 +358,6 @@ class User extends Manager
                    $insertEmail->execute(array($newEmail, $_SESSION['id']));
                    $_SESSION['mail'] = $newEmail;
                    $insertEmail->closeCursor();
-                   // header("Location: private-gallery.php?id=".$_SESSION['id']);
                }
            }
            else
@@ -370,15 +366,14 @@ class User extends Manager
        if (isset($_POST['newPassword1']) AND !empty($_POST['newPassword1'])
        AND isset($_POST['newPassword2']) AND !empty($_POST['newPassword2']))
        {
-           $mdp1 = $_POST['newPassword1']; // A CRYPTER
-           $mdp2 = $_POST['newPassword2']; // A CRYPTER
+           $mdp1 = $_POST['newPassword1'];
+           $mdp2 = $_POST['newPassword2'];
            if ($mdp1 == $mdp2)
            {
                $insertPassword = $this->bdd->prepare("UPDATE users SET password = ? WHERE id_user = ?");
-               $insertPassword->execute(array($mdp1, $_SESSION['id']));
+               $insertPassword->execute(array(hash('whirlpool', $mdp1), $_SESSION['id']));
                $_SESSION['password'] = $mdp1;
                $insertPassword->closeCursor();
-               // header("Location: private-gallery.php?id=".$_SESSION['id']);
            }
            else
                $error = "your passwords are not the same !";
@@ -426,57 +421,17 @@ class Publication extends Manager
   {
     parent::__construct();
   }
-  // public function create_posts()
-  // {
-  //     $error = NULL;
-  //     if (!empty($_SESSION['id']))
-  //     {
-  //        $id = $_SESSION['id'];
-  //        if (isset($_FILES['local-picture']) && !empty($_FILES['local-picture']['name']))
-  //        {
-  //            $Post = $this->bdd->prepare("INSERT INTO posts (id_user, creation_date) VALUES (?,DATE(NOW()))");
-  //            $Post->execute([$id]);
-  //            $Post->closeCursor();
-  //            $reqPost = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
-  //            $reqPost->execute(array($id));
-  //            $actualPost = $reqPost->fetch();
-  //            $reqPost->closeCursor();
-  //            $maxSize = 2097152;
-  //            $valid_extension = array('jpg', 'jpeg', 'gif', 'png');
-  //            if ($_FILES['local-picture']['size'] <= $maxSize)
-  //            {
-  //                $uploadedExtension = strtolower(substr(strrchr($_FILES['local-picture']['name'], '.'), 1));
-  //                if (in_array($uploadedExtension, $valid_extension))
-  //                {
-  //                    $path = "./public/images/posts/".$id."-".$actualPost[0].".".$uploadedExtension;
-  //                    $result = move_uploaded_file($_FILES['local-picture']['tmp_name'], $path);
-  //                    if ($result)
-  //                    {
-  //                        $updatePost = $this->bdd->prepare("UPDATE posts SET image = ? ORDER BY id_post DESC LIMIT 1");
-  //                        $updatePost->execute([$path]);
-  //                        $updatePost->closeCursor();
-  //                    }
-  //                    else
-  //                        $error = "a mistake has occured ...";
-  //                }
-  //                else
-  //                    $error = "your picture must be formated as jpg, jpeg, gif or png !";
-  //            }
-  //            else
-  //                $error = "this picture must be less than 2 Mo !";
-  //        }
-  //        else
-  //           $error = "please select a file !";
-  //        if (isset($error))
-  //        {
-  //            $removePost = $this->bdd->prepare("DELETE * FROM posts WHERE id_user = ? ORDER BY id_post DESC LIMIT 1");
-  //            $removePost->execute(array([$id]));
-  //            $removePost->closeCursor();
-  //        }
-  //        return $error;
-  //     }
-  // }
 
+	public function get_user_posts()
+	{
+		$req = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ?");
+		$req->execute(array($_SESSION['id']));
+		while($posts_data = $req->fetch(PDO::FETCH_ASSOC))
+		{
+			echo '<img class="posts" src="'.$posts_data['image'].'" width="260" height="230"></br>';
+		}
+
+	}
   public function postImg($img)
   {
     echo "$img";
@@ -501,11 +456,6 @@ class Publication extends Manager
       }
   }
 
-  // public function comment_validator($post, $header, $bool)
-  // {
-  //   $this->create_comment($post);
-  //   $this->create_notification($post, $header, $bool);
-  // }
   public function user_post_recover($header)
   {
     $publicationParPage = 5;
@@ -674,8 +624,6 @@ class Publication extends Manager
 
       while($donnees_messages= $retour_messages->fetch(PDO::FETCH_ASSOC)) // On lit les entrées une à une grâce à une boucle
       {
-        // print_r($donnees_messages);
-        // echo "ici";
           // Je vais afficher les messages dans des petits tableaux. C'est à vous d'adapter pour votre design...
           //De plus j'ajoute aussi un nl2br pour prendre en compte les sauts à la ligne dans le message.
           $reqcomment = $this->bdd->prepare('SELECT * FROM users WHERE id_user = ?');

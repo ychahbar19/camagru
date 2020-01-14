@@ -3,9 +3,9 @@
         if (isset($_SESSION["user-created"]))
             echo "<p>".$_SESSION["user-created"]."</p>";
     ?>
-    <div class="sign-div">
-      <article class="sign-article">
-        <form action="" method="POST">
+    <!-- <div class="sign-div"> -->
+      <article>
+        <form action="" method="POST" style="margin-top: 100px">
           <div class="form-div--signin">
             <input type="text" class="form-control" name="pseudoconnect" placeholder="pseudo">
           </div>
@@ -19,5 +19,5 @@
           <p>you doesn't have an account ? <a href="./index.php?action=sign-up">Sign up</a></p>
         </article>
       </article>
-    </div>
+    <!-- </div> -->
 </section>
