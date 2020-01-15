@@ -568,7 +568,7 @@ class Publication extends Manager
   public function create_comment($post)
   {
       $req = $this->bdd->prepare('INSERT INTO commentary_space (id_user, id_post, commentary, creation_date) VALUES(?, ?, ?, DATE(NOW()))');
-      $req->execute(array($_SESSION['id'], $post['id_post'], $_POST['message']));
+      $req->execute(array($_SESSION['id'], $post['id_post'], htmlspecialchars($_POST['message'])));
       $req->closeCursor();
   }
 
@@ -634,7 +634,7 @@ class Publication extends Manager
             <div class="comment-div">
                 <a href="#" class="comment-writer--link"><p><img src="'.$comment_user["avatar"].'" width="35" height="30" class="user-logo--commentary">
                   '.stripslashes($comment_user["pseudo"]).': </p></a>
-                  <p>'.nl2br(stripslashes($donnees_messages["commentary"])).'</p>
+                  <p>'.nl2br(stripslashes(htmlspecialchars($donnees_messages["commentary"]))).'</p>
             </div>
             ';
 
